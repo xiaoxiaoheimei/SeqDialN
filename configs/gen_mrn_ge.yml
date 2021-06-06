@@ -1,0 +1,94 @@
+# Dataset reader arguments
+dataset:
+  image_features_train_h5: 'data/features_faster_rcnn_x101_train.h5'
+  image_features_val_h5: 'data/features_faster_rcnn_x101_val.h5'
+  image_features_test_h5: 'data/features_faster_rcnn_x101_test.h5'
+  img_norm: 1
+  concat_history: False
+  max_sequence_length: 20
+  vocab_min_count: 5
+  word_embedding_type: 'glove'
+
+  # Only work when word_embedding_type is 'glove'
+  word_counts_json: 'data/visdial_1.0_word_counts_train.json'
+  glove_weight_txt: 'data/glove.840B.300d/glove.840B.300d.txt'
+  glove_emb_dim: 300
+  glove_vec_num: 2196017
+
+  # Only work when word_embedding_type is 'bert'
+  bert_counts_json: 'data/visdial_1.0_bert_token_count.json'
+
+
+# Model related arguments
+model:
+  encoder: 'dense'
+  decoder: 'gen'
+  loss: 'ce' # 'np' for multi-class N-pair loss, 'ce' for cross entropy loss
+  img_feature_size: 2048
+  word_embedding_type: 'glove'
+  word_embedding_size: 300
+
+  # Content lstm
+  content_lstm_hidden_size: 512
+  content_lstm_num_layers: 2
+  content_lstm_dropout: 0.0
+  
+  # Dense Co-Attention
+  stack_depth: 3
+  sub_maps: 4
+  K: 2
+
+  # Reasoning 
+  reason_mode: 'transformer'
+
+  # Only work when reson_mode is 'transformer'
+  transformer:
+    n_embd: 1024    # should equal to 2*content_lstm_hidden_size
+    n_head: 4       # number of multi-heads
+    n_ctx: 20       # number of the maximum dialogure rounds
+    n_layer: 2      # number of transformer layers
+    attn_pdrop: 0.0
+    resid_pdrop: 0.0
+    n_positions: 48
+    layer_norm_epsilon: 0.00001
+
+  # Decoder
+  decoder_lstm_hidden_size: 768
+  decoder_lstm_num_layers: 2
+  decoder_lstm_dropout: 0.0
+
+  # Only work when decoder is 'gen'
+  answer_dropout: 0.0
+  use_attention: True
+  max_sequence_length: 20
+
+
+# Optimization related arguments
+solver:
+  batch_size: 8             # effective batch size
+  accumulation_steps: 1     # gradient accumulation steps
+  num_epochs: 15
+  initial_lr: 0.00005
+  training_splits: 'train'  # 'train' or 'trainval'
+  optimizer: 'AdamW'        # 'Adamax' or 'AdamW'
+  weight_decay: 0.0         # only works on non-bert params
+  max_grad_norm: 1.0        # set to 0 if not clip gradient
+
+  # Works on all params
+  no_decay:
+    - 'bias'
+    - 'ln_'
+
+  # Learning rate schedule
+  lr_schedule: 'warmup_linear'
+  warmup_epochs: 1
+
+  # Only work when lr_schedule is 'warmup_reduce_on_milestones'
+  warmup_factor: 0.2
+  lr_gamma: 0.2
+  lr_milestones: # epochs when lr —> lr * lr_gamma
+    - 8
+    - 11
+
+  # Only work when lr_schedule is 'warmup_cosine_with_hard_restarts'
+  cycles: 3
