@@ -9,7 +9,19 @@ Code for reproducing results in our paper **SeqDialN: Sequential Visual Dialog N
   * [Training](#training)
   * [Evaluation](#evaluation)
   * [Ensemble](#ensemble)
+  * [Acknowledgements](#acknowledgements)
 
+If you find this work is useful in your research, please kindly consider cite our paper:
+```
+@misc{yang2020seqdialn,
+      title={SeqDialN: Sequential Visual Dialog Networks in Joint Visual-Linguistic Representation Space}, 
+      author={Liu Yang and Fanqi Meng and Ming-Kuang Daniel Wu and Vicent Ying and Xianchao Xu},
+      year={2020},
+      eprint={2008.00397},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
 
 Setup and Dependencies
 ----------------------
@@ -187,6 +199,10 @@ This will search all `.h5` files in the folder specified in `--preds-folder` and
 
 For `val` split it will report all metrics mentioned above and `--save-ranks-path` is optinal. For `test` split you have to specify `--save-ranks-path` to save ensembled predict ranks to a json file.
 
+Acknowledgements
+----------------
+
+This code began as a fork of [batra-mlp-lab/visdial-challenge-starter-pytorch][12].
 
 [1]: https://conda.io/docs/user-guide/install/download.html
 [2]: https://www.dropbox.com/s/ix8keeudqrd8hn8/visdial_1.0_train.zip?dl=0
@@ -199,4 +215,5 @@ For `val` split it will report all metrics mentioned above and `--save-ranks-pat
 [9]: https://s3.amazonaws.com/visual-dialog/data/v1.0/2019/features_faster_rcnn_x101_train.h5
 [10]: https://s3.amazonaws.com/visual-dialog/data/v1.0/2019/features_faster_rcnn_x101_val.h5
 [11]: https://s3.amazonaws.com/visual-dialog/data/v1.0/2019/features_faster_rcnn_x101_test.h5
+[12]: https://github.com/batra-mlp-lab/visdial-challenge-starter-pytorch
 
