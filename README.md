@@ -13,13 +13,22 @@ Code for reproducing results in our paper **SeqDialN: Sequential Visual Dialog N
 
 If you find this work is useful in your research, please kindly consider cite our paper:
 ```
-@misc{yang2020seqdialn,
-      title={SeqDialN: Sequential Visual Dialog Networks in Joint Visual-Linguistic Representation Space}, 
-      author={Liu Yang and Fanqi Meng and Ming-Kuang Daniel Wu and Vicent Ying and Xianchao Xu},
-      year={2020},
-      eprint={2008.00397},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@inproceedings{yang-etal-2021-seqdialn,
+    title = "{S}eq{D}ial{N}: Sequential Visual Dialog Network in Joint Visual-Linguistic Representation Space",
+    author = "Yang, Liu  and
+      Meng, Fanqi  and
+      Liu, Xiao  and
+      Wu, Ming-Kuang Daniel  and
+      Ying, Vicent  and
+      Xu, James",
+    booktitle = "Proceedings of the 1st Workshop on Document-grounded Dialogue and Conversational Question Answering (DialDoc 2021)",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.dialdoc-1.2",
+    doi = "10.18653/v1/2021.dialdoc-1.2",
+    pages = "8--17"
 }
 ```
 
